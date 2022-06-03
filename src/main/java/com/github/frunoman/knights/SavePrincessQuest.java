@@ -1,4 +1,4 @@
-package com.github.frunoman;
+package com.github.frunoman.knights;
 
 public class SavePrincessQuest  implements Quest{
     @Override

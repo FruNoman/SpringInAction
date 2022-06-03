@@ -1,4 +1,4 @@
-package com.github.frunoman;
+package com.github.frunoman.knights;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
