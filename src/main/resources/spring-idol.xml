@@ -1,23 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    <context:component-scan
+            base-package="com.github.frunoman">
+        <context:include-filter type="assignable"
+                                expression="com.github.frunoman.some.Instrument"/>
+    </context:component-scan>
+    <!--    <context:annotation-config/>-->
+
     <!-- Здесь должны находиться объявления компонентов -->
-    <bean id="duke" class="com.github.frunoman.some.Juggler">
-        <constructor-arg value="15"/>
-    </bean>
+    <!--    <bean id="duke" class="com.github.frunoman.some.Juggler">-->
+    <!--        <constructor-arg value="15"/>-->
+    <!--    </bean>-->
 
-    <bean id="poeticDuke"
-          class="com.github.frunoman.some.PoeticJuggler">
-        <constructor-arg value="15" />
-        <constructor-arg ref="sonnet29" />
-    </bean>
+    <!--    <bean id="poeticDuke"-->
+    <!--          class="com.github.frunoman.some.PoeticJuggler">-->
+    <!--        <constructor-arg value="15"/>-->
+    <!--        <constructor-arg ref="sonnet29"/>-->
+    <!--    </bean>-->
 
-    <bean id="sonnet29"
-          class="com.github.frunoman.some.Sonnet29"/>
+    <!--    <bean id="sonnet29"-->
+    <!--          class="com.github.frunoman.some.Sonnet29"/>-->
 
-    <bean id="theStage"
-          class="com.github.frunoman.some.Stage"
-          factory-method="getInstance" />
+    <!--    <bean id="theStage"-->
+    <!--          class="com.github.frunoman.some.Stage"-->
+    <!--          factory-method="getInstance"/>-->
+
+    <!--    <bean id="saxophone"-->
+    <!--          class="com.github.frunoman.some.Saxophone"/>-->
+
+    <!--    <bean id="piano"-->
+    <!--          class="com.github.frunoman.some.Piano"/>-->
+
+    <!--    <bean id="guitar"-->
+    <!--          class="com.github.frunoman.some.Guitar"/>-->
+
+    <!--    <bean id="kenny"-->
+    <!--          class="com.github.frunoman.some.Instrumentalist">-->
+    <!--        <property name="song" value="Jingle Bells"/>-->
+    <!--&lt;!&ndash;        <property name="instrument" ref="piano"/>&ndash;&gt;-->
+    <!--    </bean>-->
+
+    <!--    <bean id="hank"-->
+    <!--          class="com.github.frunoman.some.OneManBand">-->
+    <!--        <property name="instruments">-->
+    <!--            <list>-->
+    <!--                <ref bean="saxophone"/>-->
+    <!--                <ref bean="guitar"/>-->
+    <!--                <ref bean="piano"/>-->
+    <!--            </list>-->
+    <!--        </property>-->
+    <!--    </bean>-->
 </beans>
