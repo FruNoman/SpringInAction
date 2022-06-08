@@ -2,14 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <context:component-scan
             base-package="com.github.frunoman">
-        <context:include-filter type="assignable"
-                                expression="com.github.frunoman.some.Instrument"/>
+
     </context:component-scan>
     <!--    <context:annotation-config/>-->
 
@@ -37,14 +39,48 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <!--    <bean id="piano"-->
     <!--          class="com.github.frunoman.some.Piano"/>-->
 
-    <!--    <bean id="guitar"-->
-    <!--          class="com.github.frunoman.some.Guitar"/>-->
+<!--        <bean id="guitar"-->
+<!--              class="com.github.frunoman.some.Guitar"/>-->
 
-    <!--    <bean id="kenny"-->
-    <!--          class="com.github.frunoman.some.Instrumentalist">-->
-    <!--        <property name="song" value="Jingle Bells"/>-->
-    <!--&lt;!&ndash;        <property name="instrument" ref="piano"/>&ndash;&gt;-->
-    <!--    </bean>-->
+<!--    <bean id="audience"-->
+<!--          class="com.github.frunoman.some.Audience"/>-->
+
+    <aop:config>
+            <aop:aspect ref="audience">
+                <!-- Ссылка на компонент audience -->
+                <aop:before pointcut=
+                                    "execution(* com.github.frunoman.some.Performer.perform(..))"
+                            method="takeSeats" />
+                <!-- Перед выступлением -->
+                <aop:before pointcut=
+                                    "execution(* com.github.frunoman.some.Performer.perform(..))"
+                            method="turnOffCellPhones" />
+                <!-- Перед выступлением -->
+                <aop:after-returning pointcut=
+                                             "execution(* com.github.frunoman.some.Performer.perform(..))"
+                                     method="applaud" />
+                <!-- После выступления -->
+                <aop:after-throwing pointcut=
+                                            "execution(* com.github.frunoman.some.Performer.perform(..))"
+                                    method="demandRefund" />
+                <!-- После неудачного выступления -->
+            </aop:aspect>
+        </aop:config>
+
+    <aop:config>
+        <aop:aspect ref="audience">
+            <!-- Совет, выполняемый и до, и после -->
+            <aop:around
+                    pointcut=
+                            "execution(* com.github.frunoman.some.Performer.perform(..))"
+                    method="watchPerformance" />
+        </aop:aspect>
+    </aop:config>
+        <bean id="kenny"
+              class="com.github.frunoman.some.Instrumentalist">
+            <property name="song" value="Jingle Bells"/>
+    <!--        <property name="instrument" ref="piano"/>-->
+        </bean>
 
     <!--    <bean id="hank"-->
     <!--          class="com.github.frunoman.some.OneManBand">-->

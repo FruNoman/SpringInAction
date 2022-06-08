@@ -31,7 +31,7 @@ public class Instrumentalist implements Performer {
     }
 
     @Autowired
-    @Qualifier("saxophone")
+    @Qualifier("guitar")
     public void setInstrument(Instrument instrument) {
         this.instrument = instrument;
     }
